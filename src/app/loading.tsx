@@ -1,11 +1,7 @@
+import Loading from "@/components/Loading/Loading";
 
+const LoadingPage = () => (
+  <Loading />
+);
 
-const Loading = () => {
-  return (
-    <div>
-        <h1>Loading...</h1>
-    </div>
-  )
-}
-
-export default Loading
+export default LoadingPage;

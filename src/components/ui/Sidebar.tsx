@@ -4,10 +4,11 @@ import { useState } from "react";
 import { Layout, Menu } from "antd";
 import { sidebarItems } from "@/constants/sidebarItems";
 import { USER_ROLE } from "@/constants/role";
+import { getUserInfo } from "@/services/auth.service";
 
 const { Sider } = Layout;
 
-const role = USER_ROLE.ADMIN;
+const { role } = getUserInfo() as any;
 
 const Sidebar = () => {
   const [collapsed, setCollapsed] = useState(false);
@@ -36,7 +37,7 @@ const Sidebar = () => {
           margin: "1rem 0",
         }}
       >
-        PH-University
+        {collapsed ? "UMS" : "UMS - PHero"}
       </div>
       <Menu
         theme="dark"

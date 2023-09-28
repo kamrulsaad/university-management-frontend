@@ -1,5 +1,6 @@
 "use client";
 
+import Loading from "@/components/Loading/Loading";
 import Contents from "@/components/ui/Contents";
 import Sidebar from "@/components/ui/Sidebar";
 import { isLoggedIn } from "@/services/auth.service";
@@ -20,7 +21,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   }, [userLoggedIn, router, isLoading]);
 
   if (!isLoading) {
-    return <h1>Loading...</h1>;
+    return <Loading />;
   }
 
   return (
