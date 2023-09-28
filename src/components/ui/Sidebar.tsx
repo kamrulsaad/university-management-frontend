@@ -33,7 +33,7 @@ const Sidebar = () => {
           fontSize: "2rem",
           textAlign: "center",
           fontWeight: "bold",
-          marginBottom: "1rem",
+          margin: "1rem 0",
         }}
       >
         PH-University
