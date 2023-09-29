@@ -15,7 +15,11 @@ const Contents = ({ children }: { children: React.ReactNode }) => {
       }}
     >
       <Header />
+      <div style={{
+        padding: "20px",
+      }}>
       {children}
+      </div>
     </Content>
   );
 };
