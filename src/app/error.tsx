@@ -1,12 +1,16 @@
 "use client";
 
-import React from "react";
+import { Row } from "antd";
 
 const ErrorPage = () => {
   return (
-    <div>
+    <Row
+      justify={"center"}
+      align={"middle"}
+      style={{ height: "100vh", color: "red" }}
+    >
       <h1>Something went wrong. Please try again later.</h1>
-    </div>
+    </Row>
   );
 };
 
