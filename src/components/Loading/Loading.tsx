@@ -1,5 +1,5 @@
 import React from "react";
-import { Alert, Col, Row, Space, Spin } from "antd";
+import { Alert, Row, Space, Spin } from "antd";
 
 const Loading: React.FC = () => (
   <Row
@@ -7,7 +7,9 @@ const Loading: React.FC = () => (
     justify={"center"}
     style={{ width: "100%", minHeight: "100vh" }}
   >
-    <Spin tip="Loading..." size="large"/>
+    <Space>
+      <Spin size="large" />
+    </Space>
   </Row>
 );
 

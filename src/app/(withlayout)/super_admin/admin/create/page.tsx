@@ -12,6 +12,8 @@ import {
   departmentOptions,
   genderOptions,
 } from "@/constants/global";
+import { adminSchema } from "@/schemas/admin";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { Button, Col, Row } from "antd";
 
 const CreateAdminPage = () => {
@@ -39,7 +41,7 @@ const CreateAdminPage = () => {
       />
       <h1>Create Admin </h1>
       <div>
-        <Form submithandler={onSubmit}>
+        <Form submithandler={onSubmit} resolver={yupResolver(adminSchema)}>
           <div
             style={{
               padding: "15px",
@@ -225,7 +227,11 @@ const CreateAdminPage = () => {
                 className="gutter-row"
                 span={8}
               >
-                <FormDatePicker name="admin.dateOfBirth" label="Date of birth" size="large" />
+                <FormDatePicker
+                  name="admin.dateOfBirth"
+                  label="Date of birth"
+                  size="large"
+                />
               </Col>
               <Col
                 style={{
