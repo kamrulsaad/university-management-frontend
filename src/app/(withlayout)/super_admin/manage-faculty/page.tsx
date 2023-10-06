@@ -20,7 +20,7 @@ const ManageFacultyPage = () => {
       />
       <h1>Manage Faculty Page</h1>
       <Link href="/super_admin/manage-faculty/create">
-        <Button>Create Faculty</Button>
+        <Button type="primary">Create Faculty</Button>
       </Link>
     </div>
   );

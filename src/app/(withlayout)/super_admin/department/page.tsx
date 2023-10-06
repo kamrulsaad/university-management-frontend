@@ -20,7 +20,7 @@ const DepartmentPage = () => {
       />
       <h1>Department Page</h1>
       <Link href="/super_admin/department/create">
-        <Button>Create Department</Button>
+        <Button type="primary">Create Department</Button>
       </Link>
     </div>
   );
