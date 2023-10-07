@@ -7,19 +7,42 @@ import FormSelectField from "@/components/Forms/FormSelectField";
 import FormTextArea from "@/components/Forms/FormTextArea";
 import UMBreadCrumb from "@/components/ui/UMBreadCrumb";
 import UploadImage from "@/components/ui/UploadImage";
-import {
-  bloodGroupOptions,
-  departmentOptions,
-  genderOptions,
-} from "@/constants/global";
+import { bloodGroupOptions, genderOptions } from "@/constants/global";
+import { useAddAdminWithFormDataMutation } from "@/redux/api/adminApi";
+import { useDepartmentsQuery } from "@/redux/api/departmentApi";
 import { adminSchema } from "@/schemas/admin";
+import { IDepartment } from "@/types";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Button, Col, Row } from "antd";
+import { Button, Col, Row, message } from "antd";
 
 const CreateAdminPage = () => {
-  const onSubmit = async (data: any) => {
+  const { data } = useDepartmentsQuery({ page: 1, limit: 100 });
+
+  const [createAdmin, { isLoading }] = useAddAdminWithFormDataMutation();
+
+  // @ts-ignore
+  const departments: IDepartment[] = data?.departments;
+
+  const departmentOptions =
+    departments &&
+    departments?.map((department) => ({
+      label: department?.title,
+      value: department?.id,
+    }));
+
+  const onSubmit = async (values: any) => {
+    
+    const obj = { ...values };
+    const file = obj["file"];
+    delete obj["file"];
+    const data = JSON.stringify(obj);
+    const formData = new FormData();
+    formData.append("file", file as Blob);
+    formData.append("data", data);
+
     try {
-      console.log(data);
+      await createAdmin(formData);
+      message.success("Admin created successfully");
     } catch (error) {
       console.error(error);
     }
@@ -41,7 +64,7 @@ const CreateAdminPage = () => {
       />
       <h1>Create Admin </h1>
       <div>
-        <Form submithandler={onSubmit} resolver={yupResolver(adminSchema)}>
+        <Form submithandler={onSubmit} >
           <div
             style={{
               padding: "15px",
@@ -153,7 +176,7 @@ const CreateAdminPage = () => {
                 className="gutter-row"
                 span={8}
               >
-                <UploadImage />
+                <UploadImage name="file" />
               </Col>
             </Row>
           </div>
@@ -279,7 +302,7 @@ const CreateAdminPage = () => {
               </Col>
             </Row>
           </div>
-          <Button htmlType="submit" type="primary">
+          <Button loading={isLoading} htmlType="submit" type="primary">
             Create
           </Button>
         </Form>

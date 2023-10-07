@@ -1,6 +1,6 @@
 "use client";
 
-import { ReactElement } from "react";
+import { ReactElement, useEffect } from "react";
 import { useForm, FormProvider, SubmitHandler } from "react-hook-form";
 
 type FormConfig = {
@@ -33,6 +33,10 @@ const Form = ({
     submithandler(data);
     reset();
   };
+
+  useEffect(() => {
+    reset(defaultValues);
+  }, [defaultValues, reset, methods]);
 
   return (
     <FormProvider {...methods}>

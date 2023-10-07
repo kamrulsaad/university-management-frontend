@@ -7,10 +7,9 @@ import { useCreateDepartmentMutation } from "@/redux/api/departmentApi";
 import { Button, Col, Row, message } from "antd";
 
 const CreateDepartmentPage = () => {
-  const [createDepartment] = useCreateDepartmentMutation();
+  const [createDepartment, { isLoading }] = useCreateDepartmentMutation();
 
   const onSubmit = async (data: any) => {
-    message.loading("Creating department...");
     try {
       await createDepartment(data);
       message.success("Department created successfully");
@@ -34,7 +33,7 @@ const CreateDepartmentPage = () => {
             <FormInput size="large" name="title" label="Title" />
           </Col>
         </Row>
-        <Button type="primary" htmlType="submit">
+        <Button loading={isLoading} type="primary" htmlType="submit">
           Create
         </Button>
       </Form>
