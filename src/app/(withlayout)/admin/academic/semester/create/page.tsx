@@ -24,8 +24,11 @@ const CreateAcademicSemesterPage = () => {
 
     data.year = parseInt(data.year);
 
+    console.log(data);
+
     try {
       const res = await createSemester(data);
+      console.log(res)
       if (!!res) message.success("Academic Semester created successfully");
     } catch (err: any) {
       message.error(err.message);

@@ -42,6 +42,7 @@ const FormSelectField = ({
             size={size}
             options={options}
             value={value}
+            loading={!options}
             placeholder={placeholder}
             defaultValue={defaultValue}
           />
