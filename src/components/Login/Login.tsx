@@ -20,14 +20,13 @@ type FormValues = {
 };
 
 const Login = () => {
-  const [userLogin] = useUserLoginMutation();
+  const [userLogin, { isLoading }] = useUserLoginMutation();
 
   const router = useRouter();
 
   const onSubmit: SubmitHandler<FormValues> = async (data: any) => {
     try {
       const response = await userLogin({ ...data }).unwrap();
-      console.log(response);
       if (response?.accessToken) {
         router.push("/profile");
         message.success("Login Successful");
@@ -74,7 +73,7 @@ const Login = () => {
                 label="User Password"
               />
             </div>
-            <Button htmlType="submit" type="primary">
+            <Button loading={isLoading} htmlType="submit" type="primary">
               Login
             </Button>
           </Form>

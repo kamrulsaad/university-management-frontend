@@ -64,7 +64,7 @@ const CreateAdminPage = () => {
       />
       <h1>Create Admin </h1>
       <div>
-        <Form submithandler={onSubmit} >
+        <Form submithandler={onSubmit} resolver={yupResolver(adminSchema)}>
           <div
             style={{
               padding: "15px",

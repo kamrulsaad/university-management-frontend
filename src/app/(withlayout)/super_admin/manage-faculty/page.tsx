@@ -18,7 +18,7 @@ const ManageFacultyPage = () => {
           },
         ]}
       />
-      <h1>Manage Faculty Page</h1>
+      <h1>Faculty List </h1>
       <Link href="/super_admin/manage-faculty/create">
         <Button type="primary">Create Faculty</Button>
       </Link>
